@@ -1,21 +1,47 @@
-.list_container {
-	display: grid;
-	gap: 2rem;
-	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-
-.singleMeal {
-	padding: 2rem;
-	background-color: #393b40;
-	border-radius: 6px;
-}
-.pageTitle {
-	margin-bottom: 2rem;
-}
-.mealTitle {
-	margin-bottom: 1rem;
-}
-
 .pageWrapper {
-	padding: 6rem 0;
+  padding-top: 6rem; /* Ensure space for sticky navigation */
+}
+
+.appBar {
+  position: sticky;
+  top: 0;
+  background-color: #333; /* Adjust background color as needed */
+  z-index: 1000; /* Ensure the navigation is above other elements */
+}
+
+.listContainer {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.mealCard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #dde1ec;
+  border-radius: 6px;
+  overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+.cardImage {
+  width: 100%;
+  height: 200px; /* Adjust height as needed */
+  object-fit: cover;
+}
+
+.mealTitle {
+  margin-bottom: 1rem;
+}
+
+.deleteIcon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: #fff;
+}
+
+.mealDescription {
+  font-size: 1.2rem; /* Increase text size for description in pop-up */
 }

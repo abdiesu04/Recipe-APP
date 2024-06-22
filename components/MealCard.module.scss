@@ -1,0 +1,19 @@
+.mealCard {
+    margin: 16px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .mealCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .mealImage {
+    object-fit: cover;
+  }
+  
+  .mealTitle {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+  
