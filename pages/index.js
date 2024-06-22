@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <About />
+      {/* <About /> */}
     </>
   );
 }

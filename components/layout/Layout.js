@@ -7,10 +7,10 @@ function Layout({ children }) {
   return (
     <>
       <div className={classes.container}>
-        <Navbar />
+        {/* <Navbar /> */}
         {children}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
