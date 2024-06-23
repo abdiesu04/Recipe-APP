@@ -40,7 +40,7 @@ const Home = () => {
   useEffect(() => {
     const loggedInStatus = localStorage.getItem('isLoggedIn');
     if (loggedInStatus === 'true') {
-      setIsLoggedIn(true);
+      setIsLoggedIn(false);
     }
   }, []);
 
