@@ -35,21 +35,23 @@ function SearchBar({ searchText, setSearchText }) {
   return (
     <div>
       <AppBar position="static" sx={{ backgroundColor: "#1976d2" }}>
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Typography variant="h6">
+              <a href="/" style={{ color: "#fff", textDecoration: "none" }}>
+                Home
+              </a>
+            </Typography>
+            <Typography variant="h6" sx={{ marginLeft: "20px" }}>
+              <a
+                href="/savedMeals"
+                style={{ color: "#fff", textDecoration: "none" }}
+              >
+                Saved Meals
+              </a>
+            </Typography>
+          </div>
           <Typography variant="h6">
-            <a href="/" style={{ color: "#fff", textDecoration: "none" }}>
-              Home
-            </a>
-          </Typography>
-          <Typography variant="h6">
-            <a
-              href="/savedMeals"
-              style={{ color: "#fff", textDecoration: "none" }}
-            >
-              Saved Meals
-            </a>
-          </Typography>
-          <Typography variant="h6" sx={{ ml: "auto" }}>
             <a
               href="/"
               style={{ color: "#fff", textDecoration: "none" }}
@@ -61,7 +63,11 @@ function SearchBar({ searchText, setSearchText }) {
         </Toolbar>
       </AppBar>
       <Container>
-        <Grid container justifyContent="center" style={{ marginTop: "20px" }}>
+        <Grid
+          container
+          justifyContent="flex-end" // Align items to the right
+          style={{ marginTop: "20px" }}
+        >
           <Grid item xs={12} md={6}>
             <SearchContainer>
               <SearchIcon style={{ marginLeft: "10px", marginRight: "10px" }} />
