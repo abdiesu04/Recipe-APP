@@ -26,6 +26,7 @@ import {
   ListItemText,
   ListItemIcon,
   IconButton,
+  Box,
 } from '@mui/material';
 import { AddPhotoAlternate, Fastfood, Delete } from '@mui/icons-material';
 import Title from '../components/text/Title';
@@ -114,15 +115,21 @@ function SavedMeals() {
     localStorage.setItem('savedMeals', JSON.stringify(updatedMeals));
   };
 
+  const handleRemoveCustomMeal = (mealId) => {
+    const updatedMeals = customMeals.filter((meal) => meal.idMeal !== mealId);
+    setCustomMeals(updatedMeals);
+    localStorage.setItem('customMeals', JSON.stringify(updatedMeals));
+  };
+
   const handleLogout = () => {
     // Perform logout actions here, e.g., clear authentication tokens
     localStorage.removeItem('accessToken'); // Example: Remove access token from local storage
-    router.push('/login'); // Redirect to login page after logout
+    router.push('/'); // Redirect to login page after logout
   };
 
   return (
-    <div className={classes.pageWrapper}>
-      <AppBar position="static">
+    <Box className={classes.pageWrapper} sx={{ backgroundColor: '#f0f4f8', minHeight: '100vh' }}>
+      <AppBar position="static" sx={{ backgroundColor: '#1976d2' }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Recipe Finder
@@ -130,19 +137,22 @@ function SavedMeals() {
           <Button color="inherit" onClick={handleLogout}>
             Home
           </Button>
+          <Button color="inherit" onClick={() => router.push('/meals')}>
+            Meals
+          </Button>
           <Button color="inherit" onClick={() => setOpenDialog(true)}>
             Add Your Own
           </Button>
         </Toolbar>
       </AppBar>
 
-      <Container>
-        <Title variant="h4" className={classes.pageTitle}>
+      <Container sx={{ py: 4 }}>
+        <Title variant="h4" className={classes.pageTitle} sx={{ color: '#1976d2', mb: 3 }}>
           My Saved Meal List
         </Title>
         <Grid container spacing={3}>
           {savedMealsId.length <= 0 && customMeals.length <= 0 && (
-            <Typography variant="h5" className={classes.noMealsText}>
+            <Typography variant="h5" className={classes.noMealsText} sx={{ color: '#757575', textAlign: 'center', width: '100%' }}>
               You have no saved meals
             </Typography>
           )}
@@ -153,9 +163,12 @@ function SavedMeals() {
                   className={classes.mealCard}
                   onClick={() => handleMealClick(data)}
                   elevation={3}
+                  sx={{ position: 'relative', cursor: 'pointer' }}
                 >
                   {isLoading ? (
-                    <BeatLoader color="#000" loading={isLoading} size={20} />
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 200 }}>
+                      <BeatLoader color="#1976d2" loading={isLoading} size={20} />
+                    </Box>
                   ) : (
                     <>
                       <CardMedia
@@ -165,8 +178,8 @@ function SavedMeals() {
                         alt={data?.strMeal}
                         className={classes.cardImage}
                       />
-                      <CardContent>
-                        <Typography variant="h6" className={classes.mealTitle}>
+                      <CardContent sx={{ backgroundColor: '#fff' }}>
+                        <Typography variant="h6" className={classes.mealTitle} sx={{ color: '#1976d2' }}>
                           {data?.strMeal}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
@@ -175,16 +188,29 @@ function SavedMeals() {
                         <Typography variant="body2" color="textSecondary" component="p">
                           Area: {data?.strArea}
                         </Typography>
-                        <IconButton
-                          aria-label="delete"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleRemoveSavedMeal(data.idMeal);
-                          }}
-                          className={classes.deleteIcon}
-                        >
-                          <Delete />
-                        </IconButton>
+                        <Box className={classes.cardActions} sx={{ position: 'absolute', right: 8, bottom: 8 }}>
+                          <IconButton
+                            aria-label="delete"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRemoveSavedMeal(data.idMeal);
+                            }}
+                            sx={{ color: '#d32f2f' }}
+                          >
+                            <Delete />
+                          </IconButton>
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRemoveSavedMeal(data.idMeal);
+                            }}
+                            sx={{ ml: 1 }}
+                          >
+                            Remove
+                          </Button>
+                        </Box>
                       </CardContent>
                     </>
                   )}
@@ -197,6 +223,7 @@ function SavedMeals() {
                 className={classes.mealCard}
                 onClick={() => handleMealClick(meal)}
                 elevation={3}
+                sx={{ position: 'relative', cursor: 'pointer' }}
               >
                 <CardMedia
                   component="img"
@@ -205,20 +232,33 @@ function SavedMeals() {
                   alt={meal.strMeal}
                   className={classes.cardImage}
                 />
-                <CardContent>
-                  <Typography variant="h6" className={classes.mealTitle}>
+                <CardContent sx={{ backgroundColor: '#fff' }}>
+                  <Typography variant="h6" className={classes.mealTitle} sx={{ color: '#1976d2' }}>
                     {meal.strMeal}
                   </Typography>
-                  <IconButton
-                    aria-label="delete"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRemoveSavedMeal(meal.idMeal);
-                    }}
-                    className={classes.deleteIcon}
-                  >
-                    <Delete />
-                  </IconButton>
+                  <Box className={classes.cardActions} sx={{ position: 'absolute', right: 8, bottom: 8 }}>
+                    <IconButton
+                      aria-label="delete"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRemoveCustomMeal(meal.idMeal);
+                      }}
+                      sx={{ color: '#d32f2f' }}
+                    >
+                      <Delete />
+                    </IconButton>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRemoveCustomMeal(meal.idMeal);
+                      }}
+                      sx={{ ml: 1 }}
+                    >
+                      Remove
+                    </Button>
+                  </Box>
                 </CardContent>
               </Card>
             </Grid>
@@ -289,7 +329,9 @@ function SavedMeals() {
             <input type="file" hidden onChange={handleImageChange} />
           </Button>
           {newMeal.strMealThumb && (
-            <img src={newMeal.strMealThumb} alt="Meal" className={classes.previewImage} />
+            <Box sx={{ mt: 2, textAlign: 'center' }}>
+              <img src={newMeal.strMealThumb} alt="Meal" className={classes.previewImage} />
+            </Box>
           )}
         </DialogContent>
         <DialogActions>
@@ -313,16 +355,19 @@ function SavedMeals() {
               alt={detailMeal?.strMeal}
             />
             <CardContent>
-              <Typography variant="h5" className={classes.detailText}>
+              <Typography variant="h5" className={classes.detailText} sx={{ color: '#1976d2' }}>
                 Category: <strong>{detailMeal?.strCategory}</strong>
               </Typography>
-              <Typography variant="h5" className={classes.detailText}>
+              <Typography variant="h5" className={classes.detailText} sx={{ color: '#1976d2' }}>
                 Area: <strong>{detailMeal?.strArea}</strong>
               </Typography>
-              <Typography variant="body1" className={classes.detailText}>
-                Instructions: {detailMeal?.strInstructions}
+              <Typography variant="body1" className={classes.detailText} sx={{ color: '#1976d2' }}>
+                Instructions:
               </Typography>
-              <Typography variant="body1" className={classes.detailText}>
+              <Typography variant="body1" paragraph className={classes.detailInstructions} sx={{ whiteSpace: 'pre-line' }}>
+                {detailMeal?.strInstructions}
+              </Typography>
+              <Typography variant="body1" className={classes.detailText} sx={{ color: '#1976d2' }}>
                 Ingredients:
               </Typography>
               <List dense>
@@ -331,7 +376,7 @@ function SavedMeals() {
                     <ListItemIcon>
                       <Fastfood />
                     </ListItemIcon>
-                    <ListItemText primary={ingredient.trim()} />
+                    <ListItemText primary={<Typography variant="h6">{ingredient.trim()}</Typography>} />
                   </ListItem>
                 ))}
               </List>
@@ -344,7 +389,7 @@ function SavedMeals() {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   );
 }
 

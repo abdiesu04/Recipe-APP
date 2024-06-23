@@ -1,6 +1,6 @@
 .input {
 	max-width: 500px;
-	background: var(--secondary-color);
+	// background: var(--secondary-color);
 	border: none;
 	width: 100%;
 	height: 40px;
@@ -14,3 +14,17 @@
 		border: 2px solid var(--primary-color);
 	}
 }
+
+
+.input {
+	margin: 16px 0;
+	.MuiOutlinedInput-root {
+	  &:hover fieldset {
+		border-color: #1976d2;
+	  }
+	  &.Mui-focused fieldset {
+		border-color: #1976d2;
+	  }
+	}
+  }
+  

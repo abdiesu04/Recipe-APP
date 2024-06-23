@@ -1,6 +1,6 @@
 .item {
 	padding: 2rem;
-	background: var(--secondary-color);
+	// background: var(--secondary-color);
 	display: inline-block;
 	text-align: center;
 	border-radius: 6px;
@@ -8,3 +8,29 @@
 		border-radius: 6px;
 	}
 }
+
+.item {
+	text-decoration: none;
+	display: block;
+  }
+  
+  .card {
+	border-radius: 8px;
+	overflow: hidden;
+	transition: transform 0.3s;
+  }
+  
+
+  
+  .card {
+	transition: transform 0.2s ease-in-out;
+	&:hover {
+	  transform: scale(1.05);
+	  box-shadow: 6px 6px 12px #c5c5c6, -6px -6px 12px #ffffff;
+	}
+  }
+  
+  .title {
+	margin-top: 8px;
+  }
+  

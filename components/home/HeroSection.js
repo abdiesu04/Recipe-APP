@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Grid,
@@ -37,6 +37,13 @@ const Home = () => {
   const [isSignup, setIsSignup] = useState(false); // State to toggle between login and signup forms
   const router = useRouter();
 
+  useEffect(() => {
+    const loggedInStatus = localStorage.getItem('isLoggedIn');
+    if (loggedInStatus === 'true') {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const handleLoginOpen = () => {
     setLoginOpen(true);
   };
@@ -51,6 +58,7 @@ const Home = () => {
       const response = await axios.post('http://localhost/recipe_app_backend/logout.php');
       if (response.data.status === 'success') {
         setIsLoggedIn(false);
+        localStorage.removeItem('isLoggedIn');
         // Additional logout logic, if any
       } else {
         console.error('Logout failed:', response.data.message);
@@ -102,6 +110,7 @@ const Home = () => {
       if (response.data.status === 'success') {
         setMessage(isSignup ? 'Registration successful!' : 'Authentication successful!');
         setIsLoggedIn(true);
+        localStorage.setItem('isLoggedIn', 'true');
         setTimeout(() => {
           handleLoginClose(); // Close the dialog after successful login or signup
           setIsSignup(false); // Reset to login form if registered

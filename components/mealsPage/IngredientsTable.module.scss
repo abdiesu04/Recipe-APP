@@ -19,3 +19,25 @@
 .title {
 	margin-bottom: 1rem;
 }
+
+
+.title {
+	margin-bottom: 16px;
+	color: #1976d2;
+  }
+  
+  .tableContainer {
+	margin-top: 16px;
+	background-color: #fff;
+	border-radius: 4px;
+  }
+  
+  .tableRow:nth-of-type(odd) {
+	background-color: #f5f5f5;
+  }
+  
+  .tableCell {
+	padding: 16px;
+	color: #333;
+  }
+  
