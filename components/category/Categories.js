@@ -24,8 +24,9 @@ export default function Categories({
   }
 
   return (
+    //fetches items from api and sorts them 
     <div className={classes.categories__container}>
-      {categories.map((item) => (
+      {categories.map((item) => ( 
         <CategoryItem
           key={item.idCategory}
           category={item}
