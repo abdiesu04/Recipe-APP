@@ -27,7 +27,6 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import classes from './HeroSection.module.scss';
-
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -58,7 +57,7 @@ const Home = () => {
       const response = await axios.post('http://localhost/recipe_app_backend/logout.php');
       if (response.data.status === 'success') {
         setIsLoggedIn(false);
-        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('isLoggedIn'); {/*logout removes user session if any */}
         // Additional logout logic, if any
       } else {
         console.error('Logout failed:', response.data.message);
