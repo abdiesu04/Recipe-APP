@@ -1,18 +1,26 @@
 ### Recipe App
+![home page](/assets/homapage.png)
 
 Discover tasty recipes with our dynamic React / Next.js and PHP-powered app! Tailored as a school project for a Web-Based Engineering course, integrating MySQL for a seamless culinary experience.
 
 #### Features:
 
 - **Authentication:** Secure login system to access personalized features.
+![register](./assets/register.png)
+
   
 - **Save Your Favorite Meals:** Bookmark and organize your preferred recipes for quick access.
+![save meals](/assets/savedmeals.png)
   
 - **Explore Meals:** Browse a wide range of curated recipes to discover new favorites.
+![meals](/assets/meals.png)
   
 - **Explore by Category:** Filter recipes based on categories such as cuisine type, dietary preference, or meal type.
+
   
-- **Add Your Own Recipe:** Contribute your unique recipes to enrich the community database.
+- **Add Your Own Recipe:** Contribute your unique recipes to enrich the 
+community database.
+![add recipe](/assets/image.png)
 
 #### Technologies Used:
 
